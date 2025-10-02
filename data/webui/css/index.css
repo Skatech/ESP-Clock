@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Consolas;
+    font-size: 1em;
+    letter-spacing: -0.04em;
+    color: #555555;
+    background: #cccccc;
+    text-align: center;
+}
+div.container {
+    max-width: 25em;
+    margin: 0 auto;
+    padding: 0.5em;
+}
+h1 {
+    margin: 0.25em 0;
+    font-size: 3.5rem;
+}
+div.clock-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.0;
+}
+canvas.analog-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+div.digital-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+div.digital-display-time {
+    margin-bottom: 1rem;
+    font-size: 3.5rem;
+}
+div.digital-display-date {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+div.weather-panel {
+    margin: 1em 0;
+}
+div.weather-descr {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+div.weather-attrs {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+div.links-panel {
+    margin-top: 4rem;
+}
+a:link, a:visited, a:hover, a:active {
+    color: unset;
+}
