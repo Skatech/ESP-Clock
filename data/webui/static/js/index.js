@@ -1,5 +1,5 @@
 "use strict"
-const colorScheme = ["#d8d8d8", "#ffff00", "#00ff00", "#ff0000", "#4444ff", "#0000ff"]
+const colorScheme = ["#e4e4e4", "#ffff44", "#44ff44", "#ff4444", "#8888ff", "#4444ff"]
 const colorZz = 0, colorTm = 1, colorSm = 2, colorMm = 3, colorHd = 4, colorHn = 5
 const colorsOld = Array(60).fill(-1), colorsNew = Array(60).fill(colorZz)
 function updateLedStrip() {
@@ -68,7 +68,7 @@ function refreshTime() {
         updateDigitalClockDisplay(date)
         updateRadialClockDisplay(date)
     }
-    setTimeout(refreshTime, 1000 - Date.now() % 1000)
+    setTimeout(refreshTime, 1100 - Date.now() % 1000)
 }
 
 function updateForecast(forecast) {

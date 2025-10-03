@@ -1,9 +1,9 @@
 // #include <WiFi.h>
 // #include <ESP8266WiFi.h>
 #include <ESP8266NetBIOS.h>
-
-// #include <ESPmDNS.h>
+#include <ESP8266mDNS.h>
 #include "WiFiControl.h"
+
 
 const __FlashStringHelper* WiFiControl::currentStatusDescr() {
     switch (WiFi.status()) {
@@ -22,8 +22,12 @@ const __FlashStringHelper* WiFiControl::currentStatusDescr() {
 
 bool WiFiControl::initNetBIOS(const String& hostname) {
     if(hostname.length()) {
+        if (MDNS.begin(hostname.c_str())) {
+            MDNS.addService(F("http"), F("tcp"), 80);
+        }
+        else Serial.println(F("mDNS failed to start!!!"));
+
         return NBNS.begin(hostname.c_str());
-        //return MDNS.begin(hostname.c_str()); // MDNS responder started
     }
     NBNS.end();
     //MDNS.end();
@@ -33,8 +37,7 @@ bool WiFiControl::initNetBIOS(const String& hostname) {
 bool WiFiControl::initNetwork(const IPAddress& address, const IPAddress& gateway,
             const IPAddress& subnet, const IPAddress& dns, const String& hostname) {
     return (!WiFi.isConnected() || WiFi.disconnect()) && WiFi.mode(WIFI_STA)
-        && WiFi.config(address, gateway, subnet, dns)
-        && WiFi.hostname(hostname) && initNetBIOS(hostname);
+        && WiFi.config(address, gateway, subnet, dns) && WiFi.hostname(hostname);
 }
 
 bool WiFiControl::beginConnect(const String& ssid, const String& password) {
@@ -81,7 +84,13 @@ bool WiFiControl::watchConnection() {
     if (status != prev_status) {
         onConnectionUpdated(status, prev_status);
         prev_status = status;
+        if (status == WL_CONNECTED) {
+            initNetBIOS(WiFi.getHostname());
+        }
         return true;
+    }
+    else if (WiFi.isConnected()) {
+        MDNS.update();
     }
 
     return false;

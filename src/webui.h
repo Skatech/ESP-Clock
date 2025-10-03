@@ -31,7 +31,7 @@ void initWebUI() {
     //     webServer.send(302, "text/plain", "Redirecting to index page");
     // });
 
-    webServer.serveStatic("/", LittleFS, "/webui/", "no-cache"); //"max-age=3600" or "no-cache"
+    webServer.serveStatic("/", LittleFS, "/webui/static/", "max-age=60"); //"max-age=3600" or "no-cache"
     webServer.begin();
 }
 

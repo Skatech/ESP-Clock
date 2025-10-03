@@ -1,17 +1,18 @@
 body {
     margin: 0;
-    padding: 0;
+    color: #555555;
+    background: #dddddd;
+    text-align: center;
     font-family: Consolas;
     font-size: 1em;
     letter-spacing: -0.04em;
-    color: #555555;
-    background: #cccccc;
-    text-align: center;
 }
 div.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     max-width: 25em;
     margin: 0 auto;
-    padding: 0.5em;
 }
 h1 {
     margin: 0.25em 0;
@@ -59,7 +60,7 @@ div.weather-attrs {
     font-weight: bold;
 }
 div.links-panel {
-    margin-top: 4rem;
+    margin: auto 0 1em 0;
 }
 a:link, a:visited, a:hover, a:active {
     color: unset;
